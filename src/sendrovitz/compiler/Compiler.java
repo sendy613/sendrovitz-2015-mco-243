@@ -7,11 +7,16 @@ public class Compiler {
 	public static void main(String args[]) {
 		Scanner keyboard = new Scanner(System.in);
 
-		String input;
+		String input= "";
 		ArrayList<String> commands = new ArrayList<String>();
 		String[] memory = new String[256];
-		do {
+		System.out.println("Enter -1 to end input");
+		while (keyboard.hasNext()){
 			input = keyboard.nextLine();
+			if(input.compareTo("-1")==0){		
+				break;
+			}
+			else{
 			if (input.charAt(0) != '/') {
 				for (int j = 0; j < input.length(); j++) {
 					if (input.charAt(j) == '/') {
@@ -23,7 +28,8 @@ public class Compiler {
 
 				commands.add(input.toUpperCase());
 			}
-		} while (keyboard.hasNext());
+			}
+		}
 
 		Boolean error = false;
 		String[] line = null;
