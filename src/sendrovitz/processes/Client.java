@@ -24,10 +24,10 @@ public class Client {
 			// waits 10 seconds. in the server readline() will block but if
 			// there is nothing to read it will break out of the loop. (it knows
 			// there is nothing left to read when socket closes)
-			Thread.sleep(10 * 1000);
+			ThreadIncrement.sleep(10 * 1000);
 			writer.println("Esti");
 			writer.flush();
-			Thread.sleep(10 * 1000);
+			ThreadIncrement.sleep(10 * 1000);
 
 			// if close here then if there is an IOExcep before this then it
 			// wont close it.
