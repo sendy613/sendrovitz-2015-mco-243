@@ -5,7 +5,6 @@ import java.io.OutputStream;
 import java.io.PrintWriter;
 import java.net.Socket;
 
-
 public class Client {
 	public static void main(String args[]) {
 
@@ -15,7 +14,7 @@ public class Client {
 
 		Socket socket = null;
 		try {
-			socket = new Socket("localhost", 3761);
+			socket = new Socket("localhost", 8007);
 			OutputStream out = socket.getOutputStream();
 			PrintWriter writer = new PrintWriter(out);
 			writer.println("hello");
@@ -39,11 +38,14 @@ public class Client {
 		// exception
 		finally {
 			// if dont close then resource leak
-			
-			  try { socket.close(); } catch (IOException e) {
-			  e.printStackTrace(); }
-			 
-			//IOUtils.closeQuietly(socket);
+
+			try {
+				socket.close();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+
+			// IOUtils.closeQuietly(socket);
 		}
 	}
 }

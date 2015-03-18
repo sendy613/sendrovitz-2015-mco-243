@@ -13,7 +13,7 @@ public class Server {
 		ServerSocket serverSocket;
 		try {
 
-			serverSocket = new ServerSocket(3761);
+			serverSocket = new ServerSocket(8007);
 
 			// this will keep on checking for new clients. each loop will go
 			// until the socket gets closed by the client

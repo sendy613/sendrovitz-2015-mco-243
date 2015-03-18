@@ -14,9 +14,10 @@ public class Dir {
 			// Process p = Runtime.getRuntime().exec("cmd /c echo %cd%");
 
 			// changes the class path to be the bin folder
-			Process p = Runtime.getRuntime().exec("java -cp ./bin sendrovitz.processes.Client");
-			// Process clientProcess= Runtime.getRuntime().exec("java Server");
-			BufferedReader input = new BufferedReader(new InputStreamReader(p.getErrorStream()));
+			
+			Process serverProcess = Runtime.getRuntime().exec("java -cp ./bin sendrovitz.processes.Server");
+			Process clientProcess= Runtime.getRuntime().exec("java -cp ./bin sendrovitz.processes.Client");
+			BufferedReader input = new BufferedReader(new InputStreamReader(serverProcess.getInputStream()));
 			while ((line = input.readLine()) != null) {
 				System.out.println(line);
 			}
