@@ -5,6 +5,9 @@ import java.io.OutputStream;
 import java.io.PrintWriter;
 import java.net.Socket;
 
+import org.apache.commons.io.IOUtils;
+
+
 public class Client {
 	public static void main(String args[]) {
 
@@ -39,13 +42,15 @@ public class Client {
 		finally {
 			// if dont close then resource leak
 
-			try {
+		/*	try {
+				if(socket!=null){
 				socket.close();
+				}
 			} catch (IOException e) {
 				e.printStackTrace();
-			}
+			}*/
 
-			// IOUtils.closeQuietly(socket);
+			IOUtils.closeQuietly(socket);
 		}
 	}
 }

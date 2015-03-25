@@ -1,4 +1,4 @@
-package sendrovitz.processes;
+package sendrovitz.threads;
 
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.atomic.AtomicInteger;
@@ -11,7 +11,6 @@ public class ThreadIncrement extends Thread {
 
 	public ThreadIncrement(AtomicInteger integer, CountDownLatch latch) {
 		this.latch = latch;
-		this.integer = integer;
 	}
 
 	public void run() {
