@@ -7,6 +7,7 @@ public class Scheduler {
 	private static final int QUANTUM = 10;
 	private List<FakeProcess> list;
 	private SchedulerAlgorithm algorithm;
+	private int round;
 
 	public Scheduler(SchedulerAlgorithm algorithm) {
 		// can make a bunch of instances of an algorithm and scheduler can take
@@ -14,6 +15,7 @@ public class Scheduler {
 		// the logic behind the scheduling can be in the instances' class
 		list = new ArrayList<FakeProcess>();
 		this.algorithm = algorithm;
+		round = 0;
 
 	}
 
@@ -29,8 +31,17 @@ public class Scheduler {
 
 				if (process.isStillRunning()) {
 					addProcess(process);
+					process.setRound(round);
 				}
 			}
+			round++;
+			// if(algorithm == ){
+			for (FakeProcess p : list) {
+				if (round - p.getRound() >= 20) {
+					p.increasePriority();
+				}
+			}
+			// }
 		}
 	}
 

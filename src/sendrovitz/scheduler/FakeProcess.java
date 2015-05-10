@@ -32,4 +32,7 @@ public class FakeProcess {
 	public int getRound() {
 		return round;
 	}
+	public void increasePriority(){
+		priority++;
+	}
 }
