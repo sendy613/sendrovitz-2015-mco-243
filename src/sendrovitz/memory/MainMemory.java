@@ -4,11 +4,12 @@ import java.util.Scanner;
 
 public class MainMemory {
 	private int totalBytes;
+	private int numRows;
 	private char[][] memory;
 
 	public MainMemory(int totalBytes) {
 		this.totalBytes = totalBytes;
-		int numRows = totalBytes / 128;
+		this.numRows = totalBytes / 128;
 		this.memory = new char[numRows][128];
 		for (int i = 0; i < memory.length; i++) {
 			for (int j = 0; j < memory[i].length; j++) {
@@ -18,20 +19,37 @@ public class MainMemory {
 	}
 
 	public boolean allocate(Integer processID, int numBytes) {
+		if(numBytes>totalBytes){
+			return false;
+		}
 		int numBytesLeft = numBytes;
+		int tempArray[][] = new int[totalBytes][2];
+		int tempI = 0;
+		boolean allocated =false;
 
+		outerloop:
 		for (int i = 0; i < memory.length; i++) {
 			for (int j = 0; j < memory[i].length; j++) {
 				if (memory[i][j] == '-') {
-					memory[i][j] = processID.toString().charAt(0);
+					tempArray[tempI][0] = i;
+					tempArray[tempI++][1] =j;
 					numBytesLeft--;
 				}
 				if (numBytesLeft == 0) {
-					return true;
+					allocated = true;
+					break outerloop;
 				}
 			}
 		}
+		if(allocated){
+			for(int i =0; i<tempArray.length; i++){
+				memory[tempArray[i][0]][tempArray[i][1]] = processID.toString().charAt(0);
+			}
+			return true;
+		}
+		else{
 		return false;
+		}
 	}
 
 	public void free(Integer processID) {
